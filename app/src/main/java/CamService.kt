@@ -75,10 +75,15 @@ class CamService() : Service() {
                 Log.d(TAG, "Receive: " + p1?.action)
                 when (p1?.action) {
                     ACTION_MONITOR -> startMonitoring()
-                    ACTION_ADD_SAFEZONE -> locationTracker?.addSafeZone(
-                        p1.getStringExtra("name"),
-                        p1.getParcelableExtra("location")
-                    )
+                    ACTION_ADD_SAFEZONE -> {
+                        val notificationManager =
+                            applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                        notificationManager.cancel(REMINDER_NOTIFICATION_ID)
+                        locationTracker?.addSafeZone(
+                            p1.getStringExtra("name"),
+                            p1.getParcelableExtra("location")
+                        )
+                    }
                     ACTION_DEL_SAFEZONE -> locationTracker?.removeSafeZone(p1.getStringExtra("name"))
                 }
             }
@@ -150,9 +155,9 @@ class CamService() : Service() {
         }
 
         val notification: Notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle(getText(R.string.app_name))
-            .setContentText(getText(R.string.app_name))
-            .setSmallIcon(R.drawable.notification_template_icon_bg)
+            .setContentTitle("Mask Monitoring")
+            .setContentText("Service is running in background...")
+            .setSmallIcon(R.mipmap.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
             .setTicker(getText(R.string.app_name))
             .build()
@@ -205,10 +210,10 @@ class CamService() : Service() {
                     val notificationBuilder =
                         NotificationCompat.Builder(applicationContext, REMINDER_CHANNEL_ID)
                             .setDefaults(Notification.DEFAULT_SOUND)
-                            .setSmallIcon(R.drawable.notification_template_icon_bg)
+                            .setSmallIcon(R.mipmap.ic_launcher_foreground)
                             .setContentIntent(resultIntent)
-                            .setContentTitle("GUNAKAN MASKER !!!")
-                            .setContentText("Anda Terdeteksi Tidak Menggunakan Masker. Mari Patuhi Protokol Kesehatan Dengan Menggunakan Masker")
+                            .setContentTitle("MASK REMINDER !!!")
+                            .setContentText("Please Wear a Mask to Help Protect You Against Coronavirus")
                             .setPriority(NotificationCompat.PRIORITY_HIGH)
                             .setCategory(NotificationCompat.CATEGORY_REMINDER)
 

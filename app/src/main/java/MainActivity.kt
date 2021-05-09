@@ -239,7 +239,7 @@ class MainActivity : AppCompatActivity() {
             imageView.visibility = View.GONE
             maskAcc.setText("")
             maskStatus.setText("")
-            safeZone.setText("Anda Berada Di Zona-Aman")
+            safeZone.setText("You are in the safe-zone")
             safeZone.setTextColor(getResources().getColor(R.color.colorPrimaryDark))
         }
     }

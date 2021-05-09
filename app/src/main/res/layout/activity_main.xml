@@ -91,7 +91,7 @@
             android:text="Let's Start Monitoring" />
 
     <Button
-            android:text="TANDAI SEBAGAI SAFE-ZONE"
+            android:text="MARK AS SAFE-ZONE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttonSafeZone"
