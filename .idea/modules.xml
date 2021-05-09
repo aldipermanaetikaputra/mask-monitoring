@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/background-cam-master2.iml" filepath="$PROJECT_DIR$/.idea/background-cam-master2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/background-cam-master2.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/background-cam-master2.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mask-monitoring.iml" filepath="$PROJECT_DIR$/.idea/modules/mask-monitoring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/mask-monitoring.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/mask-monitoring.app.iml" />
     </modules>
   </component>
 </project>
