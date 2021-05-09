@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PakaiMasker</string>
+
+    <string name="err_no_cam_permission">App requires camera permission to work!</string>
+    <string name="err_no_loc_permission">App requires location permission to work!</string>
+    <string name="err_no_active_gps">GPS must be active!</string>
+</resources>
