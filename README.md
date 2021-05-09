@@ -21,8 +21,8 @@ In terms of prediction models, we are using an excellent open source model calle
 Screenshots
 -----------
 
-![Unmasked](screenshots/unmasked.png "A list of plants")
-![Masked](screenshots/masked.png "Details for a specific plant")
-![NotFound](screenshots/noface.png "Plants that have been added to your garden")
-![Browsing](screenshots/browsing.png "Plants that have been added to your garden")
-![SafeZone](screenshots/safezone.png "Plants that have been added to your garden")
+![Unmasked](screenshots/unmasked.png "Detected not using a mask")
+![Masked](screenshots/masked.png "Detected using a mask")
+![NotFound](screenshots/noface.png "No face detected")
+![Browsing](screenshots/browsing.png "Monitoring still running while browsing")
+![SafeZone](screenshots/safezone.png "Monitoring is paused when in safe-zone")
