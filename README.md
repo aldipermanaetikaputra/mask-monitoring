@@ -17,3 +17,12 @@ Python Wrapper is required for running classification to predict usage of mask, 
 We use great SDK which is [Chaquopy](https://chaquo.com/chaquopy/) to help us implement Python components in our Android app.
 
 In terms of prediction models, we are using an excellent open source model called [FaceMaskPrediction](https://github.com/AIZOOTech/FaceMaskDetection), which is able to accurately predict for this use case.
+
+Screenshots
+-----------
+
+![Unmasked](screenshots/unmasked.png "A list of plants")
+![Masked](screenshots/masked.png "Details for a specific plant")
+![NotFound](screenshots/noface.png "Plants that have been added to your garden")
+![Browsing](screenshots/browsing.png "Plants that have been added to your garden")
+![SafeZone](screenshots/safezone.png "Plants that have been added to your garden")
