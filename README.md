@@ -35,9 +35,9 @@ Screenshots
 -----------
 
 <p float="left">
-<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/unmasked.png" width="280" alt="Detected not using a mask">
-<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/masked.png" width="280" alt="Detected using a mask">
-<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/noface.png" width="280" alt="No face detected">
-<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/browsing.png" width="280" alt="Monitoring still running while browsing">
-<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/safezone.png" width="280" alt="Monitoring is paused when in safe-zone">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/unmasked.png" width="260" alt="Detected not using a mask">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/masked.png" width="260" alt="Detected using a mask">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/noface.png" width="260" alt="No face detected">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/browsing.png" width="260" alt="Monitoring still running while browsing">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/safezone.png" width="260" alt="Monitoring is paused when in safe-zone">
 </p>
