@@ -18,11 +18,26 @@ We use great SDK which is [Chaquopy](https://chaquo.com/chaquopy/) to help us im
 
 In terms of prediction models, we are using an excellent open source model called [FaceMaskPrediction](https://github.com/AIZOOTech/FaceMaskDetection), which is able to accurately predict for this use case.
 
+Features
+------------
+
+* Offline-use
+* Low battery usage
+* Works in all device orientation
+* Capture image per x seconds interval (default: 5 seconds)
+* Safe-zone marker with x meters radius (default: 10 meters)
+* Pause monitoring on screen off / while in safe-zone
+* [Upcoming] Scheduling monitor based on time range
+* [Upcoming] Multi-device sharing support (tracking another device)
+
+
 Screenshots
 -----------
 
-![Unmasked](screenshots/unmasked.png "Detected not using a mask")
-![Masked](screenshots/masked.png "Detected using a mask")
-![NotFound](screenshots/noface.png "No face detected")
-![Browsing](screenshots/browsing.png "Monitoring still running while browsing")
-![SafeZone](screenshots/safezone.png "Monitoring is paused when in safe-zone")
+<p float="left">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/unmasked.png" width="310" alt="Detected not using a mask">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/masked.png" width="310" alt="Detected using a mask">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/noface.png" width="310" alt="No face detected">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/browsing.png" width="310" alt="Monitoring still running while browsing">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/safezone.png" width="310" alt="Monitoring is paused when in safe-zone">
+</p>
