@@ -16,7 +16,7 @@ Resources
 Python Wrapper is required for running classification to predict usage of mask, so we don't send any picture of yourself to our server / cloud, your privacy is completley safe. 
 We use great SDK which is [Chaquopy](https://chaquo.com/chaquopy/) to help us implement Python components in our Android app.
 
-In terms of prediction models, we are using an excellent open source model called [FaceMaskPrediction](https://github.com/AIZOOTech/FaceMaskDetection), which is able to accurately predict for this use case.
+In terms of prediction models, we are using an excellent TensorFlow model called [FaceMaskPrediction](https://github.com/AIZOOTech/FaceMaskDetection), which is able to accurately predict for this use case.
 
 Features
 ------------
@@ -35,9 +35,9 @@ Screenshots
 -----------
 
 <p float="left">
-<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/unmasked.png" width="310" alt="Detected not using a mask">
-<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/masked.png" width="310" alt="Detected using a mask">
-<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/noface.png" width="310" alt="No face detected">
-<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/browsing.png" width="310" alt="Monitoring still running while browsing">
-<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/safezone.png" width="310" alt="Monitoring is paused when in safe-zone">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/unmasked.png" width="300" alt="Detected not using a mask">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/masked.png" width="300" alt="Detected using a mask">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/noface.png" width="300" alt="No face detected">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/browsing.png" width="300" alt="Monitoring still running while browsing">
+<img src="https://github.com/aldipermanaetikaputra/mask-monitoring/raw/main/screenshots/safezone.png" width="300" alt="Monitoring is paused when in safe-zone">
 </p>
