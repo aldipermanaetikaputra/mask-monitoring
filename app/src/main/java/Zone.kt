@@ -12,7 +12,7 @@ class Zone() : Parcelable {
     var isSafe: Boolean = false
 
     constructor(parcel: Parcel) : this() {
-        name = parcel.readString()
+        name = parcel.readString()!!
         latitude = parcel.readDouble()
         longitude = parcel.readDouble()
         distance = parcel.readInt()
