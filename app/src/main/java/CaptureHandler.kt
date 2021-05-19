@@ -65,7 +65,7 @@ class CaptureHandler {
             previewSize!!.getWidth(),
             previewSize!!.getHeight(),
             ImageFormat.YUV_420_888,
-            50
+            5
         )
 
         sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager;
@@ -104,7 +104,11 @@ class CaptureHandler {
 
         // Calculate desired JPEG orientation relative to camera orientation to make
         // the image upright relative to the device orientation
-        return (sensorOrientation + deviceOrientation + 360) % 360
+        if (sensorOrientation != null) {
+            return (sensorOrientation + deviceOrientation + 360) % 360
+        }
+
+        return 0
     }
     private fun getImageOrientation(): Float {
         if (orientation === ORIENTATION_POTRAIT) return 270f
@@ -118,13 +122,13 @@ class CaptureHandler {
         // Get all supported sizes for TextureView
         val characteristics = cameraManager.getCameraCharacteristics(camId)
         val map = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
-        val supportedSizes = map.getOutputSizes(SurfaceTexture::class.java)
+        val supportedSizes = map?.getOutputSizes(SurfaceTexture::class.java)
 
         // We want to find something near the size of our TextureView
         val texViewArea = textureViewWidth * textureViewHeight
         val texViewAspect = textureViewWidth.toFloat()/textureViewHeight.toFloat()
 
-        val nearestToFurthestSz = supportedSizes.sortedWith(compareBy(
+        val nearestToFurthestSz = supportedSizes?.sortedWith(compareBy(
             // First find something with similar aspect
             {
                 val aspect = if (it.width < it.height) it.width.toFloat() / it.height.toFloat()
@@ -138,8 +142,10 @@ class CaptureHandler {
         ))
 
 
-        if (nearestToFurthestSz.isNotEmpty())
-            return nearestToFurthestSz[0]
+        if (nearestToFurthestSz != null) {
+            if (nearestToFurthestSz.isNotEmpty())
+                return nearestToFurthestSz[0]
+        }
 
         return Size(320, 200)
     }
@@ -246,6 +252,8 @@ class CaptureHandler {
                                             camera.close()
                                             stopOrientation()
                                             targetSurfaces.clear()
+
+                                            System.gc()
                                         }
                                     }
                                 },
@@ -259,6 +267,7 @@ class CaptureHandler {
                         camera.close()
                         stopOrientation()
                         targetSurfaces.clear()
+                        System.gc()
 
                         Log.e(this.javaClass.name, "onConfigureFailed()")
                     }
@@ -268,6 +277,7 @@ class CaptureHandler {
         } catch (e: Exception) {
             camera.close()
             stopOrientation()
+            System.gc()
 
             Log.e(this.javaClass.name, "doCapture()")
         }

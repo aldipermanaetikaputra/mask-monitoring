@@ -24,13 +24,14 @@ class LocationTracker {
     private var isStarted = false
     private var isSafe = false
     private var updateInterval: Long
-//    private var smallDisplacementDistance: Float
+    private var smallDisplacementDistance: Float
     private var safezoneRadius: Int
 
-    constructor(context: Context, interval: Long, radius: Int) {
+    constructor(context: Context, interval: Long, radius: Int, small: Float) {
         this.context = context
         this.updateInterval = interval
         this.safezoneRadius = radius
+        this.smallDisplacementDistance = small
         this.locationClient = LocationServices.getFusedLocationProviderClient(this.context)
     }
 
@@ -130,7 +131,7 @@ class LocationTracker {
             .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
             .setInterval(updateInterval)
             .setFastestInterval(updateInterval/2)
-            // .setSmallestDisplacement(SMALL_DISPLACEMENT_DISTANCE)
+            .setSmallestDisplacement(smallDisplacementDistance)
 
         // Create LocationSettingsRequest object using location request
         val builder = LocationSettingsRequest.Builder()

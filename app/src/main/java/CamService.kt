@@ -14,6 +14,7 @@ import androidx.core.app.NotificationCompat
 import com.chaquo.python.PyObject
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
+import java.time.LocalTime
 
 class CamService() : Service() {
     private var classificationModule : PyObject? = null
@@ -23,12 +24,15 @@ class CamService() : Service() {
     private var monitorTask: Runnable? = null
     private var mainHandler = Handler(Looper.getMainLooper())
 
-    private var TOTAL_CAPTURE = 10
-    private var TOTAL_CAPUTRE_PROCESSED = 2
-    private var CAPUTRE_INTERVAL = 5 * 1000L
-    private val LOCATION_INTERVAL = 5 * 1000L
-    private val SMALL_DISPLACEMENT_DISTANCE: Float = 15f
-    private val SAFEZONE_RADIUS = 10
+    private var SCHEDULED_TIME_BEGIN : LocalTime? = null
+    private var SCHEDULED_TIME_END : LocalTime? = null
+    private var TOTAL_CAPTURE = 7                           // 7 images to capture
+    private var TOTAL_CAPUTRE_PROCESSED = 2                 // 2 images sample to processed
+    private var CAPUTRE_INTERVAL = 15 * 1000L               // 15 seconds capture interval
+    private val LOCATION_INTERVAL = 15 * 1000L              // 15 seconds location updates
+    private val SMALL_DISPLACEMENT_DISTANCE: Float = 20f    // 20 meters minimum distance to update
+    private val SAFEZONE_RADIUS = 50                        // 50 meters radius of safezone
+    private val CONFIDENCE_THRESHOLD = 0.8                  // 80 percent minimum confidence
 
     override fun onBind(p0: Intent?): IBinder? {
         return null
@@ -55,6 +59,10 @@ class CamService() : Service() {
         registerReceiver(receiver, filter)
 
         startForeground()
+
+
+//        this.SCHEDULED_TIME_BEGIN = LocalTime.parse("06:00:00")
+//        this.SCHEDULED_TIME_END = LocalTime.parse("15:00:00")
     }
     override fun onDestroy() {
         super.onDestroy()
@@ -68,7 +76,7 @@ class CamService() : Service() {
 
 
     private fun init() {
-        locationTracker = LocationTracker(applicationContext, LOCATION_INTERVAL, SAFEZONE_RADIUS)
+        locationTracker = LocationTracker(applicationContext, LOCATION_INTERVAL, SAFEZONE_RADIUS, SMALL_DISPLACEMENT_DISTANCE)
         captureHandler = CaptureHandler(applicationContext, TOTAL_CAPTURE, TOTAL_CAPUTRE_PROCESSED)
         receiver = object : BroadcastReceiver() {
             override fun onReceive(p0: Context?, p1: Intent?) {
@@ -110,13 +118,21 @@ class CamService() : Service() {
         })
     }
     private fun isReady(): Boolean {
-        if ((getSystemService(POWER_SERVICE) as PowerManager).isInteractive == false) {
-            Log.d(TAG, "Screen device is off")
-            return false
+        if (SCHEDULED_TIME_BEGIN !== null && SCHEDULED_TIME_END != null) {
+            val now = LocalTime.now()
+            if (!(SCHEDULED_TIME_BEGIN!!.isBefore(now) && SCHEDULED_TIME_END!!.isAfter(now))) {
+                Log.d(TAG, "Out of scheduled time-range")
+                return false
+            }
         }
 
         if (locationTracker?.isSafe() === true) {
             Log.d(TAG, "User is in safe-zone")
+            return false
+        }
+
+        if ((getSystemService(POWER_SERVICE) as PowerManager).isInteractive == false) {
+            Log.d(TAG, "Screen device is off")
             return false
         }
 
@@ -192,6 +208,7 @@ class CamService() : Service() {
                 intent.putExtra("image", result.image)
                 intent.putExtra("class", result.classification)
                 intent.putExtra("accuracy", result.accuracy)
+                intent.putExtra("passed", result.accuracy >= CONFIDENCE_THRESHOLD)
                 sendBroadcast(intent)
 
                 val notificationManager =
@@ -213,7 +230,7 @@ class CamService() : Service() {
                             .setSmallIcon(R.mipmap.ic_launcher_foreground)
                             .setContentIntent(resultIntent)
                             .setContentTitle("MASK REMINDER !!!")
-                            .setContentText("Please Wear a Mask to Help Protect You Against Coronavirus")
+                            .setContentText("Please Wear a Mask to Help Protect You Againts Coronavirus")
                             .setPriority(NotificationCompat.PRIORITY_HIGH)
                             .setCategory(NotificationCompat.CATEGORY_REMINDER)
 
