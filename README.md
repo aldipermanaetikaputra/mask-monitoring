@@ -27,8 +27,8 @@ Features
 * Capture image per x seconds interval (default: 5 seconds)
 * Safe-zone marker with x meters radius (default: 10 meters)
 * Pause monitoring on screen off / while in safe-zone
-* [Upcoming] Scheduling monitor based on time range
-* [Upcoming] Multi-device sharing support (tracking another device)
+* Scheduling monitor based on time range
+* Multi-device sharing support (tracking another device)
 
 
 Screenshots
